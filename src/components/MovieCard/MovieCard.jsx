@@ -22,10 +22,9 @@ function MovieBox({movie}) {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {movie.overview}
         </Typography>
-        <Typography variant="body2">
-          Director: {movie.director}
-          <br />
-          Cast: {movie.cast.map(i => <span key={i}>i</span>)}
+        <Typography variant="body2" component="div">
+          <Typography>Director: {movie.director}</Typography>
+          Cast: {movie.cast.map(i => <Typography key={i}>{i}</Typography>)}
         </Typography>
       </CardContent>
       <CardActions>
