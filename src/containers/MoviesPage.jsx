@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import MovieBox from '../components/MovieCard/MovieCard';
 import { getMovies } from '../store/actions/actions';
 
 function Movies({ movies, getMovies }) {
-  const handleClick = () => {
-    getMovies()
-  }
+  const fetchMovies = useCallback(() => {
+    getMovies();
+  }, [getMovies]);
+
+  useEffect(() => {
+    console.log('rerenders once 0')
+    fetchMovies();
+    console.log('rerenders once 1')
+  }, [fetchMovies]);
+
+  console.log('rerenders once 2')
 
   return (
     <div>
@@ -15,7 +23,6 @@ function Movies({ movies, getMovies }) {
           <MovieBox key={movie.id} movie={movie}/>
         )
       })}
-      <button onClick={handleClick}>Click</button>
     </div>
   )
 }
